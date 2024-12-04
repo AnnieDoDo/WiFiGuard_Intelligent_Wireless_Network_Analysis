@@ -3,13 +3,28 @@
 ## Objective
 Our objective is to configure a USB network adapter in monitor mode and analyze the network activities of the host adapter, focusing on the interactions between the Wi-Fi access point (AP) and the local area network (LAN).
 ## Overview
-What will we know by analyzing through our project?<br>
-1. AP MAC, Signal, and SSID of Access Point in this area through beacon packets
+This project analyzes network traffic by processing PCAP files to extract key details about access points, connected devices, potential attacks, and advertised services in a local Wi-Fi environment. The system captures and processes various types of network packets to gain insights into the network's structure and activities. <br>
 
-2. Potential attack through Deauthentication and Disassociation packets
+### Flow
+Capture -> Process -> Analyze -> Summarize -> Results
+
+### What do we anaylze?
+1. MAC, SSID, and Signal of Access Point <br>
+
+   BSSID (MAC address), SSID (network name), and signal strengths from management layer in Beacon Frames.
    
-3. Service Name and Hostname through MDNS packets
+3. Connected Devices with AP <br>
 
+   Devices actively communicating with or sleeping (asleep) in relation to the access points from Association and Reassociation Frames and TIM (Traffic Indication Map) Field in Beacon Frames.
+
+4. Potential attack <br>
+
+   We will processes a PCAP file to analyze Deauthentication and Disassociation packets, which are often associated with Wi-Fi attacks like deauthentication floods. Then uses PyShark to filter and count these packet types, tracks their timestamps, and identifies potential attacks based on packet frequency within a configurable time window.
+   
+5. Service Name and Hostname <br>
+
+   We will parses a PCAP file to extract Multicast DNS (mDNS) details. Then identifies and displays advertised service names, hostnames, and associated MAC addresses from mDNS traffic (UDP port 5353).
+   
 ## Setup Hardware and System Configuration
 ### Operating System, USB Network Adapter, and Driver
 - Operating System <br> Kali Linux 2024.4 <br><br>
