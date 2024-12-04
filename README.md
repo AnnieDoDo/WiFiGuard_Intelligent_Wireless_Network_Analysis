@@ -3,10 +3,10 @@
 ## Objective
 Our objective is to configure a USB network adapter in monitor mode and analyze the network activities of the host adapter, focusing on the interactions between the Wi-Fi access point (AP) and the local area network (LAN).
 ## Overview
-This project analyzes network traffic by processing PCAP files to extract key details about access points, connected devices, potential attacks, and advertised services in a local Wi-Fi environment. The system captures and processes various types of network packets to gain insights into the network's structure and activities. <br>
+This project analyzes decrpyted Wifi network traffic by processing PCAP files to extract key details about access points, connected devices, potential attacks, and advertised services in a local Wi-Fi environment. <br>
 
 ### Flow
-Capture -> Process -> Analyze -> Summarize -> Results
+Capture -> Decrypt -> Process -> Analyze -> Summarize -> Results
 
 ### What do we anaylze?
 1. MAC, SSID, and Signal of Access Point <br>
@@ -119,7 +119,13 @@ wlan1     32 channels in total; available frequencies :
           Current Frequency:5.18 GHz (Channel 36)
 
 ```
+### Capture EAPOL Packets
 
+EAPOL (Extensible Authentication Protocol Over LAN) packets contain handshake encryption data required to decrypt encrypted Wi-Fi traffic in a PCAP file. Therefore, it is necessary to disconnect the connection between the access point (AP) and the host device, then reconnect to capture the handshake packets.
+
+
+* How to bserve whether packets could be decrypted by Wireshark? <br>
+   Edit -> Preference -> Protocols -> IEEE 802.11 -> Enable decryption (v) + Decryption keys [Edit...] -> [+] wpa-pwd | password:ssid
 
 ## Setup Wifi-Sniffing Python Environment
 ```
