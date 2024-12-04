@@ -132,7 +132,7 @@ EAPOL (Extensible Authentication Protocol Over LAN) packets contain handshake en
    1. Click on Wifi icon for disconnection and re-connection
    2. sudo aireplay-ng --deauth 1 -a <AP MAC> -c <host MAC> wlan1
       We will find that our host re-connect itself with EAPOL packets.
-      <img src="images/deauth.png" alt="Network Diagram" width="5000"> <br>
+      <img src="images/deauth.png" alt="Network Diagram" width="10000"> <br>
 ## Setup Wifi-Sniffing Python Environment
 ```
 sudo apt install python3-venv
