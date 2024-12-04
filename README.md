@@ -124,9 +124,15 @@ wlan1     32 channels in total; available frequencies :
 EAPOL (Extensible Authentication Protocol Over LAN) packets contain handshake encryption data required to decrypt encrypted Wi-Fi traffic in a PCAP file. Therefore, it is necessary to disconnect the connection between the access point (AP) and the host device, then reconnect to capture the handshake packets.
 
 
-* How to bserve whether packets could be decrypted by Wireshark? <br><br>
+* How to observe whether packets could be decrypted by Wireshark? <br><br>
    Edit -> Preference -> Protocols -> IEEE 802.11 -> Enable decryption (v) + Decryption keys [Edit...] -> [+] wpa-pwd | password:ssid
-   <img src="images/wpa.png" alt="Network Diagram" width="500">
+   <img src="images/wpa.png" alt="Network Diagram" width="500"> <br>
+
+* How to disconnect the host network from AP to get EAPOL packets?
+   1. Click on Wifi icon for disconnection and re-connection
+   2. sudo aireplay-ng --deauth 1 -a <AP MAC> -c <host MAC> wlan1
+      We will find that our host re-connect itself with EAPOL packets.
+      <img src="images/deauth.png" alt="Network Diagram" width="500"> <br>
 ## Setup Wifi-Sniffing Python Environment
 ```
 sudo apt install python3-venv
