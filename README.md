@@ -130,9 +130,16 @@ EAPOL (Extensible Authentication Protocol Over LAN) packets contain handshake en
 
 * How to disconnect the host network from AP to get EAPOL packets?
    1. Click on Wifi icon for disconnection and re-connection
-   2. sudo aireplay-ng --deauth 1 -a <AP MAC> -c <host MAC> wlan1
+   2. aireplay-ng tool <br>
+      ```
+      sudo aireplay-ng --deauth 1 -a [AP MAC] -c [host MAC] wlan1
+      ```
       We will find that our host re-connect itself with EAPOL packets.
+      ```
+      wlan.fc.type_subtype == 0x0C || wlan.fc.type_subtype == 0x0a || wlan.fc.type_subtype == 0x00 || wlan.fc.type_subtype == 0x01
+      ```
       <img src="images/deauth.png" alt="Network Diagram" width="10000"> <br>
+      
 ## Setup Wifi-Sniffing Python Environment
 ```
 sudo apt install python3-venv
@@ -220,9 +227,13 @@ MAC Address: 7e:b7:96:c7:bf:2d
   Hostnames: _rdlink, Mishy, 6.5.0.D.6.5.C.6.1.9.6.1.6.C.8.1.0.0.0.0.0.0.0.0.0.0.0.0.0.8.E.F.ip6.arpa, _companion-link
 ```
 ## Challenge and Troubleshooting
-1. Operating System <br>
-Initially, my laptop was running Windows 10. However, most monitor mode drivers are only supported on Linux-based operating systems. While I explored using WSL/WSL 2, they do not support enabling monitor mode. As a result, I decided to install Kali Linux to fully leverage monitor mode functionality.
-
+1. Operating System <br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Initially, my laptop was running Windows 10. However, most monitor mode drivers are only supported on Linux-based operating systems. While I explored using WSL/WSL 2, they do not support enabling monitor mode. As a result, I decided to install Kali Linux to fully leverage monitor mode functionality. <br><br>
+2. Network Hardware <br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;After decrypting the packets, I observed that expected protocols such as HTTPS, QUIC, and TCP are missing. Instead, the captured traffic primarily consists of protocols like STP, DHCP, DHCPv6, ICMPv6, IGPv2, MDNS, UDP, and XML. This suggests that the capture is limited to local network traffic rather than including broader internet communication. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;To investigate further, I switched to monitoring the host device directly instead of capturing Wi-Fi packets. This approach successfully captured the expected packets, including HTTPS and QUIC. However, the root cause of the limited packet capture remains unclear. I’ll need to explore other potential directions to fully understand the issue. <br><br>
+3. Exploring Unfamiliar Protocol Packets: Identifying Analytical Opportunities <br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Unfamiliar protocol packets hold untapped potential, but developing an analyzer for them is a challenging process. Deciding what data to extract and how to analyze it often feels like navigating a maze—testing ideas, hitting dead ends, and constantly reevaluating approaches. The struggle lies in understanding what each packet reveals and connecting it to meaningful insights about device roles, network topology, or anomalies. This iterative process, though torturous, is essential to uncover actionable information hidden in the data.
 
 1) Introduction to the problem: what's the objective and why it's important; (1-2 slides)
 
