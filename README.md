@@ -124,9 +124,9 @@ wlan1     32 channels in total; available frequencies :
 EAPOL (Extensible Authentication Protocol Over LAN) packets contain handshake encryption data required to decrypt encrypted Wi-Fi traffic in a PCAP file. Therefore, it is necessary to disconnect the connection between the access point (AP) and the host device, then reconnect to capture the handshake packets.
 
 
-* How to bserve whether packets could be decrypted by Wireshark? <br>
+* How to bserve whether packets could be decrypted by Wireshark? <br><br>
    Edit -> Preference -> Protocols -> IEEE 802.11 -> Enable decryption (v) + Decryption keys [Edit...] -> [+] wpa-pwd | password:ssid
-
+   <img src="images/wpa.png" alt="Network Diagram" width="500">
 ## Setup Wifi-Sniffing Python Environment
 ```
 sudo apt install python3-venv
