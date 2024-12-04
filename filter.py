@@ -219,7 +219,7 @@ def main():
 
     # Network credentials (not needed for access point extraction or disconnect analysis)
     ssid = "Searching for Wifi"  # Replace with your network SSID
-    password = "kicka$$1"  # Replace with your network password
+    password = ""  # Replace with your network password
 
     # Parameters for attack detection
     attack_threshold = 5  # Minimum number of packets to classify as an attack
