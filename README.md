@@ -30,10 +30,12 @@ Capture -> Decrypt -> Process -> Analyze -> Summarize -> Results
 - Operating System <br> Kali Linux 2024.4 <br><br>
 - USB Network Adaptor <br> AWUS036ACM / AWUS036ACHM <br><br>
 - Chipset/Driver <br> Mediatek/mt76x0u <br><br>
-
-Since the mt76x0u and 88XXau drivers are pre-installed in Kali Linux, I simply plugged in the adapter, and it worked seamlessly. <br> 
+   
+Since the mt76x0u are pre-installed in Kali Linux, I simply plugged in the adapter, and it worked seamlessly. <br> 
 However, if you are using a different operating system, adapter, or driver, ensure that your hardware is compatible and the appropriate drivers are installed. <br>
-(Linux-based operating systems are highly recommended for better compatibility and support.)
+(Linux-based operating systems are highly recommended for better compatibility and support.) <br><br>
+If you wonder whether the chipset is usable, please refer to [Recommended Chipset List](https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Cards%20and%20Chipsets). <br>
+If you consider to use vm, please refer to [VIF](https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/FAQ%20&%20Troubleshooting#what-is-vif).
 
 ### Set USB Adapter to Monitor Mode
 1. Check Adapter Name
