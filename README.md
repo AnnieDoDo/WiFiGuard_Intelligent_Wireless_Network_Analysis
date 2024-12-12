@@ -130,17 +130,27 @@ EAPOL (Extensible Authentication Protocol Over LAN) packets contain handshake en
    Edit -> Preference -> Protocols -> IEEE 802.11 -> Enable decryption (v) + Decryption keys [Edit...] -> [+] wpa-pwd | password:ssid
    <img src="images/wpa.png" alt="Network Diagram" width="500"> <br>
 
-* How to disconnect the host network from AP to get EAPOL packets?
-   1. Click on Wifi icon for disconnection and re-connection
-   2. aireplay-ng tool <br>
+* How to disconnect the host network or create attack packets, and check for the EAPOL packets?
+   * Replay Deauthentication Packets
+      1. Open Wireshark
+      2. Click on Wifi icon for disconnection and re-connection in your system
+      3. Save as pcap file by Wireshark
+      4. Export selected deauthentication packets from Wireshark
+      5. Change your pcap file name in disauthentication.py 
+      6. Run disauthentication.py, it will resend the deauthentication packets <br>
+   * Aireplay-ng Tool <br>
       ```
       sudo aireplay-ng --deauth 1 -a [AP MAC] -c [host MAC] wlan1
       ```
-      We will find that our host re-connect itself with EAPOL packets.
+      We will find that our host re-connect itself with EAPOL packets. <br>
       ```
       wlan.fc.type_subtype == 0x0C || wlan.fc.type_subtype == 0x0a || wlan.fc.type_subtype == 0x00 || wlan.fc.type_subtype == 0x01
       ```
-      <img src="images/deauth.png" alt="Network Diagram" width="10000"> <br>
+     <img src="images/deauth.png" alt="Network Diagram" width="10000"> <br>
+  * Crafted Packets with Scapy
+    1. Change ap_bssid, client_mac, and interface in attack.py
+    2. Run it
+       
       
 ## Setup Wifi-Sniffing Python Environment
 ```
@@ -236,14 +246,6 @@ MAC Address: 7e:b7:96:c7:bf:2d
 &nbsp;&nbsp;&nbsp;&nbsp;To investigate further, I switched to monitoring the host device directly instead of capturing Wi-Fi packets. This approach successfully captured the expected packets, including HTTPS and QUIC. However, the root cause of the limited packet capture remains unclear. I’ll need to explore other potential directions to fully understand the issue. <br><br>
 3. Exploring Unfamiliar Protocol Packets: Identifying Analytical Opportunities <br><br>
 &nbsp;&nbsp;&nbsp;&nbsp;Unfamiliar protocol packets hold untapped potential, but developing an analyzer for them is a challenging process. Deciding what data to extract and how to analyze it often feels like navigating a maze—testing ideas, hitting dead ends, and constantly reevaluating approaches. The struggle lies in understanding what each packet reveals and connecting it to meaningful insights about device roles, network topology, or anomalies. This iterative process, though torturous, is essential to uncover actionable information hidden in the data.
-
-1) Introduction to the problem: what's the objective and why it's important; (1-2 slides)
-
-2) Overview: What you do on a high level (e.g., here's an end-to-end system and you build xx, yy, and/or change zz to realize your objective); If you did any literature study and/or paper analysis, present it here as well; (1-2 slides)
-
-3) Implementation Details: Present what you have built. The used libraries, tools, etc. You could put photos of your systems or screenshots of the code you wrote; (2-4 slides, depending on how much you implemented)
-
-4) Challenges addressed: Showcase 2-3 major obstacles in your project and how you solve them; (1 slide with a few bullet points)
 
 5) Evaluation and Demo: Find proper metrics to demonstrate that your implementation works well. Conduct a live or recorded demo if possible, or a recorded demo; (2-3 slides)
 
