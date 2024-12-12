@@ -246,7 +246,3 @@ MAC Address: 7e:b7:96:c7:bf:2d
 &nbsp;&nbsp;&nbsp;&nbsp;To investigate further, I switched to monitoring the host device directly instead of capturing Wi-Fi packets. This approach successfully captured the expected packets, including HTTPS and QUIC. However, the root cause of the limited packet capture remains unclear. I’ll need to explore other potential directions to fully understand the issue. <br><br>
 3. Exploring Unfamiliar Protocol Packets: Identifying Analytical Opportunities <br><br>
 &nbsp;&nbsp;&nbsp;&nbsp;Unfamiliar protocol packets hold untapped potential, but developing an analyzer for them is a challenging process. Deciding what data to extract and how to analyze it often feels like navigating a maze—testing ideas, hitting dead ends, and constantly reevaluating approaches. The struggle lies in understanding what each packet reveals and connecting it to meaningful insights about device roles, network topology, or anomalies. This iterative process, though torturous, is essential to uncover actionable information hidden in the data.
-
-5) Evaluation and Demo: Find proper metrics to demonstrate that your implementation works well. Conduct a live or recorded demo if possible, or a recorded demo; (2-3 slides)
-
-6) Lessons learned and remaining tasks. (1 slide, serving as summary)
