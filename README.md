@@ -123,22 +123,21 @@ wlan1     32 channels in total; available frequencies :
 ```
 ### Capture EAPOL Packets
 
-EAPOL (Extensible Authentication Protocol Over LAN) packets contain handshake encryption data required to decrypt encrypted Wi-Fi traffic in a PCAP file. Therefore, it is necessary to disconnect the connection between the access point (AP) and the host device, then reconnect to capture the handshake packets.
+&nbsp;&nbsp;&nbsp;&nbsp;EAPOL (Extensible Authentication Protocol Over LAN) packets contain handshake encryption data required to decrypt encrypted Wi-Fi traffic in a PCAP file. Therefore, it is necessary to disconnect the connection between the access point (AP) and the host device, then reconnect to capture the handshake packets.
 
-
-* How to observe whether packets could be decrypted by Wireshark? <br><br>
+#### How to observe whether packets could be decrypted by Wireshark? <br>
    Edit -> Preference -> Protocols -> IEEE 802.11 -> Enable decryption (v) + Decryption keys [Edit...] -> [+] wpa-pwd | password:ssid
    <img src="images/wpa.png" alt="Network Diagram" width="500"> <br>
 
-* How to disconnect the host network or create attack packets, and check for the EAPOL packets?
-   * Replay Deauthentication Packets
-      1. Open Wireshark
-      2. Click on Wifi icon for disconnection and re-connection in your system
-      3. Save as pcap file by Wireshark
-      4. Export selected deauthentication packets from Wireshark
-      5. Change your pcap file name in disauthentication.py 
-      6. Run disauthentication.py, it will resend the deauthentication packets <br>
-   * Aireplay-ng Tool <br>
+#### How to disconnect the host network or create attack packets, and check for the EAPOL packets? (3 ways)
+1. Replay Deauthentication Packets
+   1. Open Wireshark
+   2. Click on Wifi icon for disconnection and re-connection in your system
+   3. Save as pcap file by Wireshark
+   4. Export selected deauthentication packets from Wireshark and save as pcap
+   5. Change your pcap file name in disauthentication.py 
+   6. Run disauthentication.py, it will resend the deauthentication packets <br>
+2. Aireplay-ng Tool <br>
       ```
       sudo aireplay-ng --deauth 1 -a [AP MAC] -c [host MAC] wlan1
       ```
@@ -147,7 +146,7 @@ EAPOL (Extensible Authentication Protocol Over LAN) packets contain handshake en
       wlan.fc.type_subtype == 0x0C || wlan.fc.type_subtype == 0x0a || wlan.fc.type_subtype == 0x00 || wlan.fc.type_subtype == 0x01
       ```
      <img src="images/deauth.png" alt="Network Diagram" width="10000"> <br>
-  * Crafted Packets with Scapy
+3. Crafted Packets with Scapy
     1. Change ap_bssid, client_mac, and interface in attack.py
     2. Run it
        
