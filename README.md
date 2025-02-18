@@ -1,4 +1,4 @@
-# Wifi-Sniffing
+# WiFiGuard: Intelligent Wireless Network Analysis
 
 ## Objective
 Our objective is to configure a USB network adapter in monitor mode and analyze the network activities of the host adapter, focusing on the interactions between the Wi-Fi access point (AP) and the local area network (LAN).
